@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="Start Scherm" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" HorizontalAlignment="Left" Margin="155, 0,0,0" Height="20" Width="150"  Click="ButtonBase_OnClick">Navigate To Items Create</Button>
+        <Button Grid.Row="0" HorizontalAlignment="Left" Margin="0" Width="150"  Click="ButtonBase_OnClick">Navigate To Authors Create</Button>
+        <Frame NavigationUIVisibility="Hidden" Grid.Row="1" Name="MainFrame" Height="400"/>
     </Grid>
 </Window>
