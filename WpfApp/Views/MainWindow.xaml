@@ -8,17 +8,17 @@
         Title="Start Scherm" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <WrapPanel Orientation="Horizontal" Grid.Row="0" Background="#222831">
-            <Button  HorizontalAlignment="Stretch" Margin="0,8" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46"  Click="ButtonBase_OnClick" Content="Auteur Registreren">
+            <Button FontSize="18"  HorizontalAlignment="Stretch" Margin="0,8" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46"  Click="ButtonBase_OnClick" Content="Auteur Registreren">
             </Button>
             <Separator Width="20" Background="Transparent"></Separator>
-            <Button HorizontalAlignment="Stretch"  Margin="0, 8" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46" Click="ButtonBase_OnClick" Content="Boek Registreren"/>
+            <Button FontSize="18" HorizontalAlignment="Stretch"  Margin="0, 8" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46" Click="ButtonBase_OnClick" Content="Boek Registreren"/>
             <TextBlock/>
         </WrapPanel>
 
