@@ -8,11 +8,20 @@
         Title="Start Scherm" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" HorizontalAlignment="Left" Margin="155, 0,0,0" Height="20" Width="150"  Click="ButtonBase_OnClick">Navigate To Items Create</Button>
-        <Button Grid.Row="0" HorizontalAlignment="Left" Margin="0" Width="150"  Click="ButtonBase_OnClick">Navigate To Authors Create</Button>
-        <Frame NavigationUIVisibility="Hidden" Grid.Row="1" Name="MainFrame" Height="400"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <WrapPanel Orientation="Horizontal" Grid.Row="0" Background="#222831">
+            <Button  HorizontalAlignment="Stretch" Margin="0,8" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46"  Click="ButtonBase_OnClick" Content="Auteur Registreren">
+            </Button>
+            <Separator Width="20" Background="Transparent"></Separator>
+            <Button HorizontalAlignment="Stretch"  Margin="0, 8" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46" Click="ButtonBase_OnClick" Content="Boek Registreren"/>
+            <TextBlock/>
+        </WrapPanel>
+
+        <Frame Background="#EEEEEE" Opacity="20" NavigationUIVisibility="Hidden" Grid.Row="1" Name="MainFrame" Height="Auto"/>
     </Grid>
 </Window>
