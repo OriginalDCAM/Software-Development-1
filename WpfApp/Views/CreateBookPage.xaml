@@ -3,28 +3,25 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:WpfApp.Views"
-      xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-      xmlns:wpfApp="clr-namespace:WpfApp"
       mc:Ignorable="d"
-      Title="ItemCreatePage" Height="450" Width="800">
+      Title="ItemCreatePage" Height="Auto" Width="Auto">
     <Page.Resources>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1">
-            <Label Content="Voer een naam in:" Target="{Binding ElementName=BookNameTextBox}"/>
-            <TextBox Name="BookNameTextBox" Text="{Binding NameProperty}"></TextBox>
-            <Label Content="Voer een beschrijving in:" Target="{Binding ElementName=BookDescTextBox}"/>
-            <TextBox Name="BookDescTextBox" Text="{Binding DescriptionProperty}"></TextBox>
+            <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="16" Target="{Binding ElementName=BookNameTextBox}"/>
+            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="12" Text="{Binding NameProperty}"></TextBox>
+            <Label Content="Voer een beschrijving in:" FontFamily="Arial" FontSize="16" Target="{Binding ElementName=BookDescTextBox}"/>
+            <TextBox Name="BookDescTextBox" FontFamily="Arial" FontSize="12" Text="{Binding DescriptionProperty}"></TextBox>
             <WrapPanel>
-            <Label Content="Kies uit een van deze genres:" Target="{Binding ElementName=GenreComboBox}"/>
+            <Label Content="Kies uit een van deze genres:" FontFamily="Arial" FontSize="16" Target="{Binding ElementName=GenreComboBox}"/>
             <Separator Width="10" Background="Transparent"></Separator>
-            <ComboBox Name="GenreComboBox" Width="Auto" Height="20" ItemsSource="{Binding Path=Genres}" SelectedItem="{Binding Path=SelectedGenre}">
+            <ComboBox Name="GenreComboBox" FontFamily="Arial" FontSize="14" Width="Auto" Height="20" ItemsSource="{Binding Path=Genres}" SelectedItem="{Binding Path=SelectedGenre}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"></TextBlock>
@@ -33,15 +30,16 @@
         </ComboBox>
             </WrapPanel>
         <StackPanel>
-            <Label Content="Zoek voor een auteur:"></Label>
-                <TextBox Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <ListBox Width="200" Height="100" 
+            <Label Content="Zoek voor een auteur en selecteer een uit deze lijst hieronder:" FontFamily="Arial" FontSize="14"></Label>
+                <TextBox Width="Auto" Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <ListBox Width="Auto" Height="100" 
                          ItemsSource="{Binding Authors, Mode=TwoWay}"
                          DisplayMemberPath="Name"
                          SelectedValuePath="Id"
-                         SelectedValue="{Binding Id}"></ListBox>
+                         SelectedValue="{Binding Id, Mode=TwoWay}"></ListBox>
         </StackPanel>
-            <Button Command="{Binding CreateBookCommand}" Content="Maak aan"/>
+            <Button Command="{Binding CreateBookCommand}" Background="#00ADB5" Foreground="White" FontSize="14" Content="Maak aan"/>
+            <TextBlock Text="{Binding MessageProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="Red"  Height="30"/>
         </StackPanel>
     </Grid>
 </Page>

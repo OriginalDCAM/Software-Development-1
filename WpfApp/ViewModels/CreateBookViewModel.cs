@@ -18,7 +18,17 @@ namespace WpfApp.ViewModels
         
         public string NameProperty { get; set; }
         public string DescriptionProperty { get; set; }
-        public string TestValue { get; set; }
+        private string _messageProperty { get; set; }
+
+        public string MessageProperty
+        {
+            get => _messageProperty;
+            set
+            {
+                _messageProperty = value;
+                OnPropertyChanged();
+            }
+        }
         
         public int Id {get; set; }
         private BookType[] _genres = Enum.GetValues(typeof(BookType)).Cast<BookType>().ToArray();
@@ -101,6 +111,19 @@ namespace WpfApp.ViewModels
         {
             try
             {
+                if (NameProperty == null)
+                {
+                    throw new Exception("Naam veld is niet ingevuld!");
+                }
+                if (DescriptionProperty == null)
+                { 
+                    throw new Exception("Beschrijving veld niet ingevuld!");
+                }
+
+                if (Id == 0)
+                {
+                    throw new Exception("Selecteer een auteur uit de lijst hierboven!");
+                }
                 _context.Books.Add(new()
                 {
                     Name = NameProperty,
@@ -113,8 +136,8 @@ namespace WpfApp.ViewModels
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
-                throw;
+                Trace.WriteLine(exception);
+                MessageProperty = exception.Message;
             }
         }
     }
