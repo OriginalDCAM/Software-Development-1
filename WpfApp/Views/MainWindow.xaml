@@ -5,23 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Start Scherm" Height="450" Width="800">
-    <Grid>
+        Title="Start Scherm" Height="Auto" MinHeight="450" MinWidth="800" Width="Auto">
+    <Grid VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="12*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <WrapPanel Orientation="Horizontal" Grid.Row="0" Background="#222831">
-            <Button FontSize="18"  HorizontalAlignment="Stretch" Margin="0,8" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46"  Click="ButtonBase_OnClick" Content="Auteur Registreren">
-            </Button>
-            <Separator Width="20" Background="Transparent"></Separator>
-            <Button FontSize="18" HorizontalAlignment="Stretch"  Margin="0, 8" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46" Click="ButtonBase_OnClick" Content="Boek Registreren"/>
-            <TextBlock/>
-        </WrapPanel>
-
+        <Grid Height="Auto" Margin="0" Background="#222831">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="0*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="3" Grid.Row="0" MinWidth="200"></TextBlock>
+                <Button Grid.Row="1" Grid.Column="0" FontSize="16" MaxWidth="150" Width="Auto"  Background="#222831" Foreground="White" BorderBrush="#393E46" Padding="0" Margin="0" Click="ButtonBase_OnClick" Content="Auteur Registreren"/>
+                <Separator Grid.Row="1" Grid.Column="1" Width="20" Background="Transparent"></Separator>
+                <Button Grid.Row="1" Grid.Column="2" FontSize="16" MaxWidth="150" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46" Padding="0" Margin="0" Click="ButtonBase_OnClick" Content="Boek Registreren"/>
+                <TextBlock Grid.Column="3" Grid.Row="2" MinWidth="200"/>
+        </Grid>
         <Frame Background="#EEEEEE" Opacity="20" NavigationUIVisibility="Hidden" Grid.Row="1" Name="MainFrame" Height="Auto"/>
     </Grid>
 </Window>
