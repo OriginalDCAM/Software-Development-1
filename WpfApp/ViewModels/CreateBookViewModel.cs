@@ -15,7 +15,7 @@ namespace WpfApp.ViewModels
     public class CreateBookViewModel : ObservableObject
     {
         private readonly DataContext _context = new DataContext();
-        
+
         public string NameProperty { get; set; }
         public string DescriptionProperty { get; set; }
         private string _messageProperty { get; set; }
@@ -29,6 +29,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        
 
         private string _messagePropertyColor { get; set; } = "Black";
 
@@ -41,11 +42,11 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
-        
-        
-        public int Id {get; set; }
+
+
+        public int Id { get; set; }
         private BookType[] _genres = Enum.GetValues(typeof(BookType)).Cast<BookType>().ToArray();
+
         public BookType[] Genres
         {
             get { return _genres; }
@@ -77,13 +78,13 @@ namespace WpfApp.ViewModels
         }
 
         public ICommand CreateBookCommand { get; set; }
-        
+
         public CreateBookViewModel()
         {
             _context.Database.EnsureCreated();
             _context.Authors.Load();
             InitializeCommands();
-            
+
             Authors = _context.Authors.Local.ToObservableCollection();
         }
 
@@ -91,6 +92,7 @@ namespace WpfApp.ViewModels
         {
             CreateBookCommand = new RelayCommand(CreateAuthor);
         }
+
         private string _searchQuery;
 
         public string SearchQuery
@@ -127,43 +129,42 @@ namespace WpfApp.ViewModels
             {
                 ValidateProperties();
 
-                _context.Books.Add(new()
+                _context.Books.Add(new Book
                 {
                     Name = NameProperty,
                     Description = DescriptionProperty,
                     AuthorId = Id,
                     Genre = SelectedGenre
                 });
-                _context.SaveChanges();
+                _context.SaveChangesAsync();
                 MessagePropertyColor = "Green";
                 MessageProperty = "Boek is toegevoegd";
-
             }
             catch (Exception exception)
             {
-                Trace.WriteLine(exception);
+                Debug.WriteLine(exception);
                 MessagePropertyColor = "Red";
-                Trace.WriteLine(MessagePropertyColor);
+                Debug.WriteLine(MessagePropertyColor);
                 MessageProperty = exception.Message;
-
             }
         }
 
         private void ValidateProperties()
         {
-                if (NameProperty == null)
-                {
-                    throw new Exception("Naam veld is niet ingevuld!");
-                }
-                if (DescriptionProperty == null)
-                { 
-                    throw new Exception("Beschrijving veld niet ingevuld!");
-                }
-                if (Id == 0)
-                {
-                    throw new Exception($"Selecteer een auteur uit de lijst hierboven {Id}");
-                }
+            if (NameProperty == null)
+            {
+                throw new Exception("Naam veld is niet ingevuld!");
+            }
 
+            if (DescriptionProperty == null)
+            {
+                throw new Exception("Beschrijving veld niet ingevuld!");
+            }
+
+            if (Id == 0)
+            {
+                throw new Exception($"Selecteer een auteur uit de lijst hierboven {Id}");
+            }
         }
     }
 }
