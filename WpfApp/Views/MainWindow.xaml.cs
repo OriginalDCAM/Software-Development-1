@@ -30,9 +30,14 @@ namespace WpfApp
             DataContext = new MainViewModel();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void NavigateToCreateBookPage(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new CreateBookPage());
+        }
+
+        private void NavigateToCreateAuthorPage(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new CreateAuthorPage());
         }
     }
 }
