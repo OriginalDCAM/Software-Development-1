@@ -29,6 +29,20 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private string _messagePropertyColor { get; set; } = "Black";
+
+        public string MessagePropertyColor
+        {
+            get => _messagePropertyColor;
+            set
+            {
+                _messagePropertyColor = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        
         
         public int Id {get; set; }
         private BookType[] _genres = Enum.GetValues(typeof(BookType)).Cast<BookType>().ToArray();
@@ -111,19 +125,8 @@ namespace WpfApp.ViewModels
         {
             try
             {
-                if (NameProperty == null)
-                {
-                    throw new Exception("Naam veld is niet ingevuld!");
-                }
-                if (DescriptionProperty == null)
-                { 
-                    throw new Exception("Beschrijving veld niet ingevuld!");
-                }
+                ValidateProperties();
 
-                if (Id == 0)
-                {
-                    throw new Exception("Selecteer een auteur uit de lijst hierboven!");
-                }
                 _context.Books.Add(new()
                 {
                     Name = NameProperty,
@@ -132,13 +135,35 @@ namespace WpfApp.ViewModels
                     Genre = SelectedGenre
                 });
                 _context.SaveChanges();
-                Trace.WriteLine("Success");
+                MessagePropertyColor = "Green";
+                MessageProperty = "Boek is toegevoegd";
+
             }
             catch (Exception exception)
             {
                 Trace.WriteLine(exception);
+                MessagePropertyColor = "Red";
+                Trace.WriteLine(MessagePropertyColor);
                 MessageProperty = exception.Message;
+
             }
+        }
+
+        private void ValidateProperties()
+        {
+                if (NameProperty == null)
+                {
+                    throw new Exception("Naam veld is niet ingevuld!");
+                }
+                if (DescriptionProperty == null)
+                { 
+                    throw new Exception("Beschrijving veld niet ingevuld!");
+                }
+                if (Id == 0)
+                {
+                    throw new Exception($"Selecteer een auteur uit de lijst hierboven {Id}");
+                }
+
         }
     }
 }

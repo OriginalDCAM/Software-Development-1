@@ -39,7 +39,7 @@
                          SelectedValue="{Binding Id, Mode=TwoWay}"></ListBox>
         </StackPanel>
             <Button Command="{Binding CreateBookCommand}" Background="#00ADB5" Foreground="White" FontSize="14" Content="Maak aan"/>
-            <TextBlock Text="{Binding MessageProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="Red"  Height="30"/>
+            <TextBlock Text="{Binding MessageProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="{Binding MessagePropertyColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"/>
         </StackPanel>
     </Grid>
 </Page>
