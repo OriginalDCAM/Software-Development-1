@@ -4,24 +4,29 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
-      Title="ItemCreatePage" Height="Auto" Width="Auto">
+      Title="ItemCreatePage" Height="Auto" MinHeight="450" Width="Auto" MinWidth="800">
     <Page.Resources>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="1">
-            <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="16" Target="{Binding ElementName=BookNameTextBox}"/>
-            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="12" Text="{Binding NameProperty}"></TextBox>
-            <Label Content="Voer een beschrijving in:" FontFamily="Arial" FontSize="16" Target="{Binding ElementName=BookDescTextBox}"/>
-            <TextBox Name="BookDescTextBox" FontFamily="Arial" FontSize="12" Text="{Binding DescriptionProperty}"></TextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=BookNameTextBox}"/>
+            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24" Text="{Binding NameProperty}" Height="25" ></TextBox>
+            <Label Content="Voer een beschrijving in:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=BookDescTextBox}"/>
+            <TextBox Name="BookDescTextBox" FontFamily="Arial" FontSize="24" Text="{Binding DescriptionProperty}" Height="25"></TextBox>
             <WrapPanel>
-            <Label Content="Kies uit een van deze genres:" FontFamily="Arial" FontSize="16" Target="{Binding ElementName=GenreComboBox}"/>
+            <Label Content="Kies uit een van deze genres:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=GenreComboBox}"/>
             <Separator Width="10" Background="Transparent"></Separator>
-            <ComboBox Name="GenreComboBox" FontFamily="Arial" FontSize="14" Width="Auto" Height="20" ItemsSource="{Binding Path=Genres}" SelectedItem="{Binding Path=SelectedGenre}">
+            <ComboBox Name="GenreComboBox" FontFamily="Arial" FontSize="16" Width="Auto" Height="20" ItemsSource="{Binding Path=Genres}" SelectedItem="{Binding Path=SelectedGenre}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"></TextBlock>
@@ -30,9 +35,10 @@
         </ComboBox>
             </WrapPanel>
         <StackPanel>
-            <Label Content="Zoek voor een auteur en selecteer een uit deze lijst hieronder:" FontFamily="Arial" FontSize="14"></Label>
-                <TextBox Width="Auto" Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <ListBox Width="Auto" Height="100" 
+            <Label Content="Zoek voor een auteur en selecteer een uit deze lijst hieronder:" FontFamily="Arial" FontSize="18"></Label>
+                <TextBox Width="Auto" Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25" />
+                <Separator Height="5" Visibility="Hidden" />
+                <ListBox Width="Auto" Height="100" FontSize="16" FontFamily="Arial"
                          ItemsSource="{Binding Authors, Mode=TwoWay}"
                          DisplayMemberPath="Name"
                          SelectedValuePath="Id"
