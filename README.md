@@ -8,7 +8,7 @@ Student nummer: s1175200
 
 ## TODO(Required):
 - [ ] Search bar for Authors and Books
-- [ ] Create a Datagrid for all the Authors and Books 
+- [ ] Create a Interactable data grid for all the Authors and Books 
 
 ## TODO(Nice to Haves):
 - [ ] Async/Await on getting data from database
