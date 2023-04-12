@@ -22,7 +22,7 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock>Auteurs pagina</TextBlock>
             <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=BookNameTextBox}"/>
-            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24" Text="{Binding NameProperty}" Height="25" ></TextBox>
+            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24" Text="{Binding NameProperty, Mode=TwoWay, ValidatesOnDataErrors=True}" Height="25" ></TextBox>
             <Label Content="Voer een beschrijving in:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=BookDescTextBox}"/>
             <TextBox 
                 Name="BookDescTextBox"
@@ -31,12 +31,11 @@
                 VerticalScrollBarVisibility="Visible"
                 FontFamily="Arial" 
                 FontSize="24" 
-                Text="{Binding DescriptionProperty}" 
+                Text="{Binding DescriptionProperty, Mode=TwoWay, ValidatesOnDataErrors=True}" 
                 Height="100"></TextBox>
             <Separator Height="5" Visibility="Hidden" />
-
             <Button Command="{Binding CreateAuthorCommand}" Background="#00ADB5" Foreground="White" FontSize="14" Content="Maak aan"/>
-            <TextBlock Text="{Binding MessageProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="{Binding MessagePropertyColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"/>
+            <TextBlock Text="{Binding ErrorContent}" HorizontalAlignment="Center" Foreground="Red"   Height="30"/>
         </StackPanel>
     </Grid>
 </Page>
