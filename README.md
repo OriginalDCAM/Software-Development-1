@@ -2,16 +2,15 @@
 Wpf applicatie voor het vak software development 1.
 
 ## Author:
-| Denzel Camelia | s1175200
+Student naam: Denzel Camelia \
+Student nummer: s1175200
 
 
 ## TODO(Required):
 - [ ] Search bar for Authors and Books
 - [ ] Create a Datagrid for all the Authors and Books 
-- [ ] Better validation to ensure that certain requirements are met
 
 ## TODO(Nice to Haves):
-- [ ] Validation using ValidateProperties
 - [ ] Async/Await on getting data from database
 
 ## Functional Requirements Done:
@@ -26,10 +25,14 @@ Wpf applicatie voor het vak software development 1.
 - [x] The use of Entity Framework
 - [x] The use of Migrations
 - [x] The use of MVVM Structure
+- [x] Better validation to ensure that certain requirements are met
+- [x] Validation using ValidateProperties
 
 
-## Explanation:
+## Explanations:
 - Heb ervoor gekozen om INotifyPropertyChanged implementatie in een aparte class te zetten, 
 zodat ik die kan implementeren op andere klasse zonder de code weer opnieuw te typen.
 - Ook heb ik ervoor gekozen om de Booktypes/Genres in een apart bestand te zetten zodat ik niet helemaal
-hoef te selecteren in die class (Type dit nog even uit)
+hoef te navigeren in de class bij het inserten van genres.
+- Daarnaast heb ik ervoor gekozen om de INotifyDataErrors interface te implementeren bij CreateAuthorViewModel voor
+beter manier van properties valideren.
