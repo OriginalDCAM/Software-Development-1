@@ -7,7 +7,7 @@ namespace WpfApp.Helpers
     {
         private readonly Action<object> _execute;
         private readonly Func<object, bool> _canExecute;
-        
+
         public event EventHandler CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
