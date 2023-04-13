@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
-      Title="CreateAuthorPage" Width="Auto" Height="Auto" MinHeight="450" MinWidth="800">
+      Title="Auteur Aanmaken | Pagina" Width="Auto" Height="Auto" MinHeight="450" MinWidth="800">
     <Page.Resources>
     </Page.Resources>
     <Grid>
@@ -18,8 +18,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
+        <WrapPanel>
+            <Button Margin="8" Height="20" Width="Auto" Click="NavigateToAllItems__"  Background="#00ADB5" Foreground="White" FontSize="14">Ga Terug naar alle items</Button>
+        </WrapPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock>Auteurs pagina</TextBlock>
+            <TextBlock FontSize="24">Auteur Aanmaken:</TextBlock>
             <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="18"
                    Target="{Binding ElementName=BookNameTextBox}" />
             <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24"

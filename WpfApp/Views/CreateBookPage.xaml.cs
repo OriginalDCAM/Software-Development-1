@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using WpfApp.ViewModels;
 
 namespace WpfApp.Views
@@ -9,6 +10,11 @@ namespace WpfApp.Views
         {
             InitializeComponent();
             DataContext = new CreateBookViewModel();
+        }
+
+        private void NavigateToAllItems__(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ViewAuthorBooksPage());
         }
     }
 }

@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
-      Title="ItemCreatePage" Height="Auto" MinHeight="450" Width="Auto" MinWidth="800">
+      Title="Boek Aanmaken | Pagina" Height="Auto" MinHeight="450" Width="Auto" MinWidth="800">
     <Page.Resources>
     </Page.Resources>
     <Grid>
@@ -18,7 +18,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
+        <WrapPanel>
+            <Button Height="20" Margin="8" Width="Auto" Click="NavigateToAllItems__"  Background="#00ADB5" Foreground="White" FontSize="14">Ga Terug naar alle items</Button>
+        </WrapPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock FontSize="24">Boek Aanmaken:</TextBlock>
             <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="18"
                    Target="{Binding ElementName=BookNameTextBox}" />
             <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24" Text="{Binding NameProperty}" Height="25" />
