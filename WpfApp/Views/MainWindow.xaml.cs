@@ -27,6 +27,7 @@ namespace WpfApp
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new ViewAuthorBooksPage());
             DataContext = new MainViewModel();
         }
 
