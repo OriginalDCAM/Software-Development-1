@@ -30,9 +30,9 @@ Student nummer: s1175200
 
 
 ## Explanations:
-- Heb ervoor gekozen om INotifyPropertyChanged implementatie in een aparte class te zetten, 
+- Ik heb ervoor gekozen om INotifyPropertyChanged implementatie in een aparte class te zetten, 
 zodat ik die kan implementeren op andere klasse zonder de code weer opnieuw te typen.
-- Ook heb ik ervoor gekozen om de Booktypes/Genres in een apart bestand te zetten zodat ik niet helemaal
+- Ik heb ervoor gekozen om de Booktypes/Genres in een apart bestand te zetten zodat ik niet helemaal
 hoef te navigeren in de class bij het inserten van genres.
-- Daarnaast heb ik ervoor gekozen om de INotifyDataErrors interface te implementeren bij CreateAuthorViewModel voor
-beter manier van properties valideren.
+-Ik heb ervoor gekozen om de INotifyDataErrors interface te implementeren bij CreateAuthorViewModel voor
+betere manier van properties valideren.
