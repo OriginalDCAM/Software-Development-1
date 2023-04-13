@@ -31,6 +31,7 @@ Student nummer: s1175200
 
 
 ## Explanations:
+- Heb ervoor gekozen om alleen te werken i.v.m dat ik 5 dagen in de week stage loop en niet de lessen kan bezoeken.
 - Heb ervoor gekozen om INotifyPropertyChanged implementatie in een aparte class te zetten, 
 zodat ik die kan implementeren op andere klasse zonder de code weer opnieuw te typen.
 - Heb ervoor gekozen om de Booktypes/Genres in een apart bestand te zetten zodat ik niet helemaal
@@ -39,3 +40,9 @@ hoef te navigeren in de class bij het inserten van genres.
 betere manier van properties valideren.
 - Heb ervoor gekozen om andere Classes te gebruiken zoals Auteurs en Boeken omdat ik een soort bibliotheek applicatie wil maken, daarom heb ik 
 de database geseed met data van bekende auteurs en de boeken die zij hebben geschreven.
+
+## Things that dont work:
+- Er is geen check die kijkt of er al een Boek/Auteur bestaat met dezelfde naam.
+- Genres kunnen niet geedit worden in de DataGrid.
+- Geen cooldown op de button voor de Create functie voor inserts in de database.
+
