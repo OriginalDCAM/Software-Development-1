@@ -3,35 +3,38 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:WpfApp.Views"
       mc:Ignorable="d"
       Title="ViewAuthorBooksPage" MinHeight="450" MinWidth="800" Height="Auto" Width="Auto">
     <Grid>
         <StackPanel>
-        <DataGrid x:Name="AuthorsDataGrid" AutoGenerateColumns="False" 
-                  EnableRowVirtualization="True" 
-                  ItemsSource="{Binding AuthorList}"
-                  SelectedItem="{Binding SelectedAuthor}"
-                  RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Id}" Header="Book Id"
-                                    Width="SizeToHeader" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="3*"/>
-                <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="3*"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-            <Separator Height="20" Visibility="Hidden"></Separator>
-        <DataGrid x:Name="BooksDataGrid" AutoGenerateColumns="False" 
-                  EnableRowVirtualization="True" 
-                  ItemsSource="{Binding AuthorBooks}" 
-                  RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Id}" Header="Book Id" 
-                                    Width="SizeToHeader" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="3*"/>
-                <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="3*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+            <DataGrid AutoGenerateColumns="False"
+                      EnableRowVirtualization="True"
+                      ItemsSource="{Binding AuthorList}"
+                      SelectedItem="{Binding SelectedAuthor}"
+                      RowDetailsVisibilityMode="VisibleWhenSelected"
+                      CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Book Id"
+                                        Width="SizeToHeader" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="3*" />
+                    <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="3*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Separator Height="20" Visibility="Hidden" />
+            <DataGrid AutoGenerateColumns="False"
+                      EnableRowVirtualization="True"
+                      ItemsSource="{Binding AuthorBooks}"
+                      RowDetailsVisibilityMode="VisibleWhenSelected"
+                      CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Book Id"
+                                        Width="SizeToHeader" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="3*" />
+                    <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="4*" />
+                    <DataGridTextColumn Binding="{Binding Genre}" Header="Genre" Width="3*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Command="{Binding CellEditEndingCommand}" Content="Bewaar wijzigingen" />
         </StackPanel>
 
     </Grid>
