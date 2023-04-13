@@ -2,13 +2,13 @@
 {
     public enum BookType
     {
-            Adventure,
-            Classics,
-            Crime,
-            Fantasy,
-            Horror,
-            Humour,
-            Mystery,
-            Romance
+        Adventure,
+        Classics,
+        Crime,
+        Fantasy,
+        Horror,
+        Humour,
+        Mystery,
+        Romance
     }
 }

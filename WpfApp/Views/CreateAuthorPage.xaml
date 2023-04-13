@@ -3,39 +3,42 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:WpfApp.Views"
       mc:Ignorable="d"
       Title="CreateAuthorPage" Width="Auto" Height="Auto" MinHeight="450" MinWidth="800">
-     <Page.Resources>
+    <Page.Resources>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock>Auteurs pagina</TextBlock>
-            <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=BookNameTextBox}"/>
-            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24" Text="{Binding NameProperty, Mode=TwoWay, ValidatesOnDataErrors=True}" Height="25" ></TextBox>
-            <Label Content="Voer een beschrijving in:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=BookDescTextBox}"/>
-            <TextBox 
+            <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="18"
+                   Target="{Binding ElementName=BookNameTextBox}" />
+            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24"
+                     Text="{Binding NameProperty, Mode=TwoWay, ValidatesOnDataErrors=True}" Height="25" />
+            <Label Content="Voer een beschrijving in:" FontFamily="Arial" FontSize="18"
+                   Target="{Binding ElementName=BookDescTextBox}" />
+            <TextBox
                 Name="BookDescTextBox"
                 TextWrapping="Wrap"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Visible"
-                FontFamily="Arial" 
-                FontSize="24" 
-                Text="{Binding DescriptionProperty, Mode=TwoWay, ValidatesOnDataErrors=True}" 
-                Height="100"></TextBox>
+                FontFamily="Arial"
+                FontSize="24"
+                Text="{Binding DescriptionProperty, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                Height="100" />
             <Separator Height="5" Visibility="Hidden" />
-            <Button Command="{Binding CreateAuthorCommand}" Background="#00ADB5" Foreground="White" FontSize="14" Content="Maak aan"/>
-            <TextBlock Text="{Binding ErrorContent}" HorizontalAlignment="Center" Foreground="Red"   Height="30"/>
+            <Button Command="{Binding CreateAuthorCommand}" Background="#00ADB5" Foreground="White" FontSize="14"
+                    Content="Maak aan" />
+            <TextBlock Text="{Binding ErrorContent}" HorizontalAlignment="Center" Foreground="Red" Height="30" />
         </StackPanel>
     </Grid>
 </Page>

@@ -14,8 +14,9 @@ namespace WpfApp.ViewModels
 {
     public class CreateAuthorViewModel : ObservableObject, INotifyDataErrorInfo
     {
-        private readonly DataContext _context = new DataContext();
+        private readonly DataContext _context = new();
         private string _nameProperty;
+
         public string NameProperty
         {
             get => _nameProperty;
@@ -23,17 +24,23 @@ namespace WpfApp.ViewModels
             {
                 _nameProperty = value;
                 OnPropertyChanged();
-            } }
+            }
+        }
+
         private string _descriptionProperty;
+
         public string DescriptionProperty
         {
             get => _descriptionProperty;
-            set {
+            set
+            {
                 _descriptionProperty = value;
-                OnPropertyChanged(); 
-            } 
+                OnPropertyChanged();
+            }
         }
+
         private string _errorContent;
+
         public string ErrorContent
         {
             get => _errorContent;
@@ -42,32 +49,35 @@ namespace WpfApp.ViewModels
                 _errorContent = value;
                 OnPropertyChanged();
             }
-        } 
+        }
+
         public ICommand CreateAuthorCommand { get; set; }
+
         public CreateAuthorViewModel()
         {
             CreateAuthorCommand = new RelayCommand(CreateAuthor);
         }
+
         // Deze roept eerst een method aan die properties valideert of ze aan de juiste regels houden
-        void CreateAuthor(object e)
+        private void CreateAuthor(object e)
         {
-                ValidateProperties();
-                if (HasErrors) return;
-                _context.Authors.Add(new Author()
-                {
-                    Name = NameProperty,
-                    Description = DescriptionProperty
-                });
-                _context.SaveChanges();
+            ValidateProperties();
+            if (HasErrors) return;
+            _context.Authors.Add(new Author()
+            {
+                Name = NameProperty,
+                Description = DescriptionProperty
+            });
+            _context.SaveChanges();
         }
-        
+
         // Code voor valideren van properties 
         private readonly Dictionary<string, List<string>>
             _errorsByPropertyName = new();
 
         public bool HasErrors => _errorsByPropertyName.Any();
 
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged; 
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
         public IEnumerable GetErrors(string propertyName)
         {
@@ -91,8 +101,8 @@ namespace WpfApp.ViewModels
                 AddError(nameof(NameProperty), "Naam mag geen cijfers bevatten!");
             if (string.IsNullOrWhiteSpace(DescriptionProperty))
                 AddError(nameof(DescriptionProperty), "Beschrijving mag niet leeg zijn");
-            ErrorContent = GetErrors(nameof(NameProperty))?.Cast<string>().FirstOrDefault() ?? GetErrors(nameof(DescriptionProperty))?.Cast<string>().FirstOrDefault() ?? "";
-
+            ErrorContent = GetErrors(nameof(NameProperty))?.Cast<string>().FirstOrDefault() ??
+                           GetErrors(nameof(DescriptionProperty))?.Cast<string>().FirstOrDefault() ?? "";
         }
 
         private void AddError(string propertyName, string error)
@@ -103,7 +113,6 @@ namespace WpfApp.ViewModels
             if (_errorsByPropertyName[propertyName].Contains(error)) return;
             _errorsByPropertyName[propertyName].Add(error);
             OnErrorsChanged(propertyName);
-
         }
 
         private void ClearErrors(string propertyName)
@@ -112,6 +121,5 @@ namespace WpfApp.ViewModels
             _errorsByPropertyName.Remove(propertyName);
             OnErrorsChanged(propertyName);
         }
-        
     }
 }

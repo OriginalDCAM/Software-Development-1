@@ -13,6 +13,5 @@ namespace WpfApp.Views
             InitializeComponent();
             DataContext = new CreateAuthorViewModel();
         }
-
     }
 }

@@ -14,12 +14,8 @@ namespace WpfApp.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-
         public MainViewModel()
         {
-
-    
         }
-
     }
 }

@@ -9,9 +9,8 @@ namespace WpfApp.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-       public string Description { get; set; }
+        public string Description { get; set; }
 
-       public virtual ICollection<Book> Books 
-       { get; private set; } = new ObservableCollection<Book>();
+        public virtual ICollection<Book> Books { get; private set; } = new ObservableCollection<Book>();
     }
 }

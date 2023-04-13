@@ -9,43 +9,54 @@
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=BookNameTextBox}"/>
-            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24" Text="{Binding NameProperty}" Height="25" ></TextBox>
-            <Label Content="Voer een beschrijving in:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=BookDescTextBox}"/>
-            <TextBox Name="BookDescTextBox" FontFamily="Arial" FontSize="24" Text="{Binding DescriptionProperty}" Height="25"></TextBox>
+            <Label Content="Voer een naam in:" FontFamily="Arial" FontSize="18"
+                   Target="{Binding ElementName=BookNameTextBox}" />
+            <TextBox Name="BookNameTextBox" FontFamily="Arial" FontSize="24" Text="{Binding NameProperty}" Height="25" />
+            <Label Content="Voer een beschrijving in:" FontFamily="Arial" FontSize="18"
+                   Target="{Binding ElementName=BookDescTextBox}" />
+            <TextBox Name="BookDescTextBox" FontFamily="Arial" FontSize="24" Text="{Binding DescriptionProperty}"
+                     Height="25" />
             <WrapPanel>
-            <Label Content="Kies uit een van deze genres:" FontFamily="Arial" FontSize="18" Target="{Binding ElementName=GenreComboBox}"/>
-            <Separator Width="10" Background="Transparent"></Separator>
-            <ComboBox Name="GenreComboBox" FontFamily="Arial" FontSize="16" Width="Auto" Height="20" ItemsSource="{Binding Path=Genres}" SelectedItem="{Binding Path=SelectedGenre}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"></TextBlock>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+                <Label Content="Kies uit een van deze genres:" FontFamily="Arial" FontSize="18"
+                       Target="{Binding ElementName=GenreComboBox}" />
+                <Separator Width="10" Background="Transparent" />
+                <ComboBox Name="GenreComboBox" FontFamily="Arial" FontSize="16" Width="Auto" Height="20"
+                          ItemsSource="{Binding Path=Genres}" SelectedItem="{Binding Path=SelectedGenre}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </WrapPanel>
-        <StackPanel>
-            <Label Content="Zoek voor een auteur en selecteer een uit deze lijst hieronder:" FontFamily="Arial" FontSize="18"></Label>
-                <TextBox Width="Auto" Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25" />
+            <StackPanel>
+                <Label Content="Zoek voor een auteur en selecteer een uit deze lijst hieronder:" FontFamily="Arial"
+                       FontSize="18" />
+                <TextBox Width="Auto" Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Height="25" />
                 <Separator Height="5" Visibility="Hidden" />
                 <ListBox Width="Auto" Height="100" FontSize="16" FontFamily="Arial"
                          ItemsSource="{Binding Authors, Mode=TwoWay}"
                          DisplayMemberPath="Name"
                          SelectedValuePath="Id"
-                         SelectedValue="{Binding Id, Mode=TwoWay}"></ListBox>
-        </StackPanel>
-            <Button Command="{Binding CreateBookCommand}" Background="#00ADB5" Foreground="White" FontSize="14" Content="Maak aan"/>
-            <TextBlock Text="{Binding MessageProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="{Binding MessagePropertyColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="30"/>
+                         SelectedValue="{Binding Id, Mode=TwoWay}" />
+            </StackPanel>
+            <Button Command="{Binding CreateBookCommand}" Background="#00ADB5" Foreground="White" FontSize="14"
+                    Content="Maak aan" />
+            <TextBlock Text="{Binding MessageProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                       HorizontalAlignment="Center"
+                       Foreground="{Binding MessagePropertyColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                       Height="30" />
         </StackPanel>
     </Grid>
 </Page>

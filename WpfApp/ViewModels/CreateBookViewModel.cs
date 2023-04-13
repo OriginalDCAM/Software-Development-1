@@ -14,7 +14,7 @@ namespace WpfApp.ViewModels
 {
     public class CreateBookViewModel : ObservableObject
     {
-        private readonly DataContext _context = new DataContext();
+        private readonly DataContext _context = new();
 
         public string NameProperty { get; set; }
         public string DescriptionProperty { get; set; }
@@ -29,7 +29,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
 
         private string _messagePropertyColor { get; set; } = "Black";
 
@@ -47,16 +47,13 @@ namespace WpfApp.ViewModels
         public int Id { get; set; }
         private BookType[] _genres = Enum.GetValues(typeof(BookType)).Cast<BookType>().ToArray();
 
-        public BookType[] Genres
-        {
-            get { return _genres; }
-        }
+        public BookType[] Genres => _genres;
 
         private BookType _selectedGenre;
 
         public BookType SelectedGenre
         {
-            get { return _selectedGenre; }
+            get => _selectedGenre;
             set
             {
                 if (_selectedGenre == value) return;
@@ -151,20 +148,11 @@ namespace WpfApp.ViewModels
 
         private void ValidateProperties()
         {
-            if (NameProperty == null)
-            {
-                throw new Exception("Naam veld is niet ingevuld!");
-            }
+            if (NameProperty == null) throw new Exception("Naam veld is niet ingevuld!");
 
-            if (DescriptionProperty == null)
-            {
-                throw new Exception("Beschrijving veld niet ingevuld!");
-            }
+            if (DescriptionProperty == null) throw new Exception("Beschrijving veld niet ingevuld!");
 
-            if (Id == 0)
-            {
-                throw new Exception($"Selecteer een auteur uit de lijst hierboven {Id}");
-            }
+            if (Id == 0) throw new Exception($"Selecteer een auteur uit de lijst hierboven {Id}");
         }
     }
 }

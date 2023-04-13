@@ -11,7 +11,8 @@ namespace WpfApp.Helpers
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Software_Development_1;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(
+                @"Server=(localdb)\MSSQLLocalDB;Database=Software_Development_1;Trusted_Connection=True;");
             optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.EnableSensitiveDataLogging();
         }
@@ -20,6 +21,5 @@ namespace WpfApp.Helpers
         {
             modelBuilder.Seed();
         }
-
     }
 }

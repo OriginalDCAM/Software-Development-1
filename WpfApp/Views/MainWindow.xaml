@@ -3,37 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="Start Scherm" Height="Auto" MinHeight="450" MinWidth="800" Width="Auto">
     <Grid VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="12*"></RowDefinition>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="12*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid Height="Auto" Margin="0" Background="#222831">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="0*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="0*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="10*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="3" Grid.Row="0" MinWidth="200"></TextBlock>
-                <Button Grid.Row="1" Grid.Column="0" FontSize="16" MaxWidth="150" Width="Auto"  Background="#222831" Foreground="White" BorderBrush="#393E46" Padding="0" Margin="0" Click="NavigateToCreateAuthorPage"  Content="Auteur Registreren"/>
-                <Separator Grid.Row="1" Grid.Column="1" Width="20" Background="Transparent"></Separator>
-                <Button Grid.Row="1" Grid.Column="2" FontSize="16" MaxWidth="150" Width="Auto" Background="#222831" Foreground="White" BorderBrush="#393E46" Padding="0" Margin="0" Click="NavigateToCreateBookPage" Content="Boek Registreren"/>
-                <TextBlock Grid.Column="3" Grid.Row="2" MinWidth="200"/>
+            <TextBlock Grid.Column="3" Grid.Row="0" MinWidth="200" />
+            <Button Grid.Row="1" Grid.Column="0" FontSize="16" MaxWidth="150" Width="Auto" Background="#222831"
+                    Foreground="White" BorderBrush="#393E46" Padding="0" Margin="0" Click="NavigateToCreateAuthorPage"
+                    Content="Auteur Registreren" />
+            <Separator Grid.Row="1" Grid.Column="1" Width="20" Background="Transparent" />
+            <Button Grid.Row="1" Grid.Column="2" FontSize="16" MaxWidth="150" Width="Auto" Background="#222831"
+                    Foreground="White" BorderBrush="#393E46" Padding="0" Margin="0" Click="NavigateToCreateBookPage"
+                    Content="Boek Registreren" />
+            <TextBlock Grid.Column="3" Grid.Row="2" MinWidth="200" />
         </Grid>
-        <Frame Background="#EEEEEE" Opacity="20" NavigationUIVisibility="Hidden" Grid.Row="1" Name="MainFrame" Height="Auto">
-
-        </Frame>
+        <Frame Background="#EEEEEE" Opacity="20" NavigationUIVisibility="Hidden" Grid.Row="1" Name="MainFrame"
+               Height="Auto" />
     </Grid>
 </Window>
