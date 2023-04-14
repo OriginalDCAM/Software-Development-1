@@ -25,9 +25,9 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged(nameof(AuthorBooks));
             }
         }
-        
+
         private ObservableCollection<Author> _editableData { get; set; }
-        
+
         public ObservableCollection<Author> EditableData
         {
             get => _editableData;
@@ -37,7 +37,7 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public List<Author> backup { get; set; }
 
         private BookType[] _genreList = Enum.GetValues(typeof(BookType)).Cast<BookType>().ToArray();
@@ -55,27 +55,38 @@ namespace WpfApp.ViewModels
         {
             SaveChangesCommand = new RelayCommand(SaveChanges);
             RevertChangesCommand = new RelayCommand(RevertChanges);
-            
+
             _context.Authors.Include(a => a.Books).Load();
-            
+
             EditableData = _context.Authors.Local.ToObservableCollection();
             backup = _context.Authors.Local.ToObservableCollection().ToList();
         }
 
         private void SaveChanges(object obj)
         {
-            Debug.Write("Delete");
-            _context.SaveChanges();
-            
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"{e.Message}");
+            }
         }
 
         private void RevertChanges(object obj)
         {
-            EditableData.Clear();
-
-            foreach (var author in backup)
+            try
             {
-                EditableData.Add(author);
+                EditableData.Clear();
+                foreach (var author in backup)
+                {
+                    EditableData.Add(author);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
             }
         }
     }
