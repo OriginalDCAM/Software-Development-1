@@ -14,9 +14,10 @@
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="3*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <WrapPanel>
             <Button Margin="8" Height="20" Width="Auto" Click="NavigateToAllItems__"  Background="#00ADB5" Foreground="White" FontSize="14">Ga Terug naar alle items</Button>
@@ -41,7 +42,8 @@
             <Separator Height="5" Visibility="Hidden" />
             <Button Command="{Binding CreateAuthorCommand}" Background="#00ADB5" Foreground="White" FontSize="14"
                     Content="Maak aan" />
-            <TextBlock Text="{Binding ErrorContent}" HorizontalAlignment="Center" Foreground="Red" Height="30" />
         </StackPanel>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding ErrorContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="Red" Height="30" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SuccessContent}" HorizontalAlignment="Center" Foreground="Green" Height="30" />
     </Grid>
 </Page>
