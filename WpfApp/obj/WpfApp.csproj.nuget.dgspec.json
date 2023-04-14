@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\denze\\Documents\\C#_Projects\\Software Development 1\\WpfApp\\WpfApp.csproj": {}
+    "C:\\Users\\denze\\Documents\\Software-Development-1\\WpfApp\\WpfApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\denze\\Documents\\C#_Projects\\Software Development 1\\WpfApp\\WpfApp.csproj": {
+    "C:\\Users\\denze\\Documents\\Software-Development-1\\WpfApp\\WpfApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\denze\\Documents\\C#_Projects\\Software Development 1\\WpfApp\\WpfApp.csproj",
+        "projectUniqueName": "C:\\Users\\denze\\Documents\\Software-Development-1\\WpfApp\\WpfApp.csproj",
         "projectName": "WpfApp",
-        "projectPath": "C:\\Users\\denze\\Documents\\C#_Projects\\Software Development 1\\WpfApp\\WpfApp.csproj",
+        "projectPath": "C:\\Users\\denze\\Documents\\Software-Development-1\\WpfApp\\WpfApp.csproj",
         "packagesPath": "C:\\Users\\denze\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\denze\\Documents\\C#_Projects\\Software Development 1\\WpfApp\\obj\\",
+        "outputPath": "C:\\Users\\denze\\Documents\\Software-Development-1\\WpfApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\denze\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -87,7 +87,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

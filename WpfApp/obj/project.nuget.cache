@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D7tFyxqplYwpRaiKTo1jZP8kcR3/b7y1kwoIXkRoqOjxxNyIixGp3wmE2ZHuzYFrFHVrZkHmBW0mgJdNdAXA5Q==",
+  "dgSpecHash": "hJdgGh8x0NFRBGca2pMtJVIqe/RMtvy8XeIYBW7BaU8ZN4/Y61wozUosC2oLqiufSmY6x+lnn5PW9uXpCuYHSQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\denze\\Documents\\C#_Projects\\Software Development 1\\WpfApp\\WpfApp.csproj",
+  "projectFilePath": "C:\\Users\\denze\\Documents\\Software-Development-1\\WpfApp\\WpfApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\denze\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\denze\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
