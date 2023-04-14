@@ -19,6 +19,14 @@ namespace WpfApp.Helpers
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Author>()
+                .HasIndex(a => a.Name)
+                .IsUnique(); 
+            
+            modelBuilder.Entity<Book>()
+                .HasIndex(b => b.Name)
+                .IsUnique();
+
             modelBuilder.Seed();
         }
     }
