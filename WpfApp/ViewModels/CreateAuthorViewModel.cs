@@ -71,10 +71,10 @@ namespace WpfApp.ViewModels
             CreateAuthorCommand = new RelayCommand(CreateAuthor);
         }
 
-        // Deze roept eerst een method aan die properties valideert of ze aan de juiste regels houden
+        // Deze roept eerst een method aan die properties valideert of ze aan de juiste regels houden als er errors zijn
+        // dan returnt de functie en toont hij de errors aan in de ValidateProperties functie
         private void CreateAuthor(object e)
         {
-            ClearErrors(nameof(NameProperty));
             ValidateProperties();
             if (HasErrors) return;
             try
@@ -82,8 +82,9 @@ namespace WpfApp.ViewModels
                 bool nameExists = _context.Authors.Any(a => a.Name == NameProperty);
                 if (nameExists)
                 {
-                    throw new DbUpdateException("Er bestaat al een boek met dezelfde naam.");
+                    throw new DbUpdateException("Er bestaat al een auteur met dezelfde naam.");
                 }
+
                 _context.Authors.Add(new Author()
                 {
                     Name = NameProperty,
@@ -91,20 +92,23 @@ namespace WpfApp.ViewModels
                 });
                 _context.SaveChanges();
                 SuccessContent = $"{NameProperty} successvol toegevoegd!";
-               
             }
             catch (DbUpdateException exception)
             {
-                Debug.Write("Works");
+                Debug.WriteLine($"{exception.Message}");
                 AddError(nameof(NameProperty), $"{exception.Message}");
                 ErrorContent = GetErrors(nameof(NameProperty))?.Cast<string>().FirstOrDefault() ?? "";
                 SuccessContent = "";
-                // Debug.WriteLine(exception);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
             }
 
         }
+        
 
-        // Code voor valideren van properties 
+        // Code voor valideren van properties en error handling
         private readonly Dictionary<string, List<string>>
             _errorsByPropertyName = new();
 
