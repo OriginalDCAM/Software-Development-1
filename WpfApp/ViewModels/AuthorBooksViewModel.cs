@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -24,24 +25,27 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged(nameof(AuthorBooks));
             }
         }
-
-        private ObservableCollection<Author> _authorList { get; set; }
-
-        public ObservableCollection<Author> AuthorList
+        
+        private ObservableCollection<Author> _editableData { get; set; }
+        
+        public ObservableCollection<Author> EditableData
         {
-            get => _authorList;
+            get => _editableData;
             set
             {
-                _authorList = value;
+                _editableData = value;
                 OnPropertyChanged();
             }
         }
         
+        public List<Author> backup { get; set; }
+
         private BookType[] _genreList = Enum.GetValues(typeof(BookType)).Cast<BookType>().ToArray();
 
         public BookType[] GenreList => _genreList;
 
-        public ICommand CellEditEndingCommand { get; set; }
+        public ICommand SaveChangesCommand { get; set; }
+        public ICommand RevertChangesCommand { get; set; }
 
         public ObservableCollection<Book> AuthorBooks =>
             SelectedAuthor != null ? new ObservableCollection<Book>(SelectedAuthor?.Books) : null;
@@ -49,15 +53,30 @@ namespace WpfApp.ViewModels
 
         public AuthorBooksViewModel()
         {
-            CellEditEndingCommand = new RelayCommand(CellEditEnding);
+            SaveChangesCommand = new RelayCommand(SaveChanges);
+            RevertChangesCommand = new RelayCommand(RevertChanges);
+            
             _context.Authors.Include(a => a.Books).Load();
-            AuthorList = _context.Authors.Local.ToObservableCollection();
+            
+            EditableData = _context.Authors.Local.ToObservableCollection();
+            backup = _context.Authors.Local.ToObservableCollection().ToList();
         }
 
-        private void CellEditEnding(object obj)
+        private void SaveChanges(object obj)
         {
-            Debug.WriteLine($"Saved the Changes: {AuthorList}");
+            Debug.Write("Delete");
             _context.SaveChanges();
+            
+        }
+
+        private void RevertChanges(object obj)
+        {
+            EditableData.Clear();
+
+            foreach (var author in backup)
+            {
+                EditableData.Add(author);
+            }
         }
     }
 }

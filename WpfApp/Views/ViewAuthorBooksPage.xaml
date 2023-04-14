@@ -9,7 +9,7 @@
         <StackPanel>
             <DataGrid AutoGenerateColumns="False"
                       EnableRowVirtualization="True"
-                      ItemsSource="{Binding AuthorList}"
+                      ItemsSource="{Binding EditableData}"
                       SelectedItem="{Binding SelectedAuthor}"
                       RowDetailsVisibilityMode="VisibleWhenSelected"
                       CanUserAddRows="False">
@@ -25,16 +25,27 @@
                       EnableRowVirtualization="True"
                       ItemsSource="{Binding AuthorBooks}"
                       RowDetailsVisibilityMode="VisibleWhenSelected"
-                      CanUserAddRows="False">
+                      CanUserAddRows="False"
+                      IsTextSearchEnabled="True"
+                      >
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Id}" Header="Book Id"
                                         Width="SizeToHeader" IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="3*" />
                     <DataGridTextColumn Binding="{Binding Description}" Header="Description" Width="4*" />
-                    <DataGridTextColumn Binding="{Binding Genre}" Header="Genre" Width="3*"></DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Genre}" Header="Genre" Width="3*" IsReadOnly="True" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Command="{Binding CellEditEndingCommand}" Content="Bewaar wijzigingen" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding SaveChangesCommand}" Content="Wijzigingen Bewaren"  />
+                <Button Grid.Column="1" Command="{Binding RevertChangesCommand}" Content="Wijzigingen Weggooien" />
+            </Grid>
+
+
         </StackPanel>
 
     </Grid>
