@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Net.Security;
-using System.Windows.Documents;
 using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using WpfApp.Helpers;
@@ -15,9 +15,29 @@ namespace WpfApp.ViewModels
     public class CreateBookViewModel : ObservableObject
     {
         private readonly DataContext _context = new();
+        private string _nameProperty;
+        private string _descriptionProperty;
 
-        public string NameProperty { get; set; }
-        public string DescriptionProperty { get; set; }
+        public string NameProperty
+        {
+            get => _nameProperty;
+            set
+            {
+                _nameProperty = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string DescriptionProperty
+        {
+            get => _descriptionProperty;
+            set
+            {
+                _descriptionProperty = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _messageProperty { get; set; }
 
         public string MessageProperty
@@ -31,18 +51,29 @@ namespace WpfApp.ViewModels
         }
 
 
-        private string _messagePropertyColor { get; set; } = "Black";
+        private string _errorContent;
 
-        public string MessagePropertyColor
+        public string ErrorContent
         {
-            get => _messagePropertyColor;
+            get => _errorContent;
             set
             {
-                _messagePropertyColor = value;
+                _errorContent = value;
                 OnPropertyChanged();
             }
         }
 
+        private string _successContent;
+
+        public string SuccessContent
+        {
+            get => _successContent;
+            set
+            {
+                _successContent = value;
+                OnPropertyChanged();
+            }
+        }
 
         public int Id { get; set; }
         private BookType[] _genres = Enum.GetValues(typeof(BookType)).Cast<BookType>().ToArray();
@@ -87,7 +118,7 @@ namespace WpfApp.ViewModels
 
         public void InitializeCommands()
         {
-            CreateBookCommand = new RelayCommand(CreateAuthor);
+            CreateBookCommand = new RelayCommand(CreateBook);
         }
 
         private string _searchQuery;
@@ -120,12 +151,15 @@ namespace WpfApp.ViewModels
             }
         }
 
-        public void CreateAuthor(object e)
+        public void CreateBook(object e)
         {
+            ValidateProperties();
+            if (HasErrors) return;
             try
             {
-                ValidateProperties();
+                var nameExists = _context.Books.Any(b => b.Name == NameProperty);
 
+                if (nameExists) throw new DbUpdateException("Er bestaat al een boek met dezelfde naam.");
                 _context.Books.Add(new Book
                 {
                     Name = NameProperty,
@@ -134,25 +168,69 @@ namespace WpfApp.ViewModels
                     Genre = SelectedGenre
                 });
                 _context.SaveChangesAsync();
-                MessagePropertyColor = "Green";
-                MessageProperty = "Boek is toegevoegd";
+                SuccessContent = $"{NameProperty} succesvol toegevoegd!";
             }
             catch (Exception exception)
             {
-                Debug.WriteLine(exception);
-                MessagePropertyColor = "Red";
-                Debug.WriteLine(MessagePropertyColor);
-                MessageProperty = exception.Message;
+                AddError(nameof(NameProperty), $"{exception.Message}");
+                ErrorContent = GetErrors(nameof(NameProperty))?.Cast<string>().FirstOrDefault() ?? "";
+                SuccessContent = "";
             }
+        }
+
+        // Code voor valideren van properties en error handling
+        private readonly Dictionary<string, List<string>>
+            _errorsByPropertyName = new();
+
+        public bool HasErrors => _errorsByPropertyName.Any();
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return _errorsByPropertyName.TryGetValue(propertyName, out var value) ? value : null;
+        }
+
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
         private void ValidateProperties()
         {
-            if (NameProperty == null) throw new Exception("Naam veld is niet ingevuld!");
+            SuccessContent = "";
+            ClearErrors(nameof(NameProperty));
+            ClearErrors(nameof(DescriptionProperty));
+            ClearErrors(nameof(Id));
+            if (string.IsNullOrWhiteSpace(NameProperty))
+                AddError(nameof(NameProperty), "Naam mag niet leeg zijn.");
+            if (NameProperty == null || NameProperty?.Length <= 4)
+                AddError(nameof(NameProperty), "Naam moet tenminsten 5 karaters bevatten!");
+            if (string.IsNullOrWhiteSpace(DescriptionProperty))
+                AddError(nameof(DescriptionProperty), "Beschrijving mag niet leeg zijn");
+            if (Id == 0) 
+                AddError(nameof(Id), "Selecteer een van de auteurs hierboven!");
+            ErrorContent = GetErrors(nameof(NameProperty))?.Cast<string>().FirstOrDefault() ??
+                           GetErrors(nameof(DescriptionProperty))?.Cast<string>().FirstOrDefault() ??
+                           GetErrors(nameof(Id))?.Cast<string>().FirstOrDefault() ??
+                           "";
+        }
 
-            if (DescriptionProperty == null) throw new Exception("Beschrijving veld niet ingevuld!");
+        private void AddError(string propertyName, string error)
+        {
+            if (!_errorsByPropertyName.ContainsKey(propertyName))
+                _errorsByPropertyName[propertyName] = new List<string>();
 
-            if (Id == 0) throw new Exception($"Selecteer een auteur uit de lijst hierboven {Id}");
+            if (_errorsByPropertyName[propertyName].Contains(error)) return;
+            _errorsByPropertyName[propertyName].Add(error);
+            OnErrorsChanged(propertyName);
+        }
+
+        private void ClearErrors(string propertyName)
+        {
+            if (!_errorsByPropertyName.ContainsKey(propertyName)) return;
+            _errorsByPropertyName.Remove(propertyName);
+            OnErrorsChanged(propertyName);
         }
     }
 }
