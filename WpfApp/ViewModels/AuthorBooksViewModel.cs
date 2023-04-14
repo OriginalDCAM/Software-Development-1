@@ -98,7 +98,7 @@ namespace WpfApp.ViewModels
             catch (Exception e)
             {
                 Debug.WriteLine($"{e.Message}");
-                AddError("exception", $"Er is iets misgegaan probeer van page te veranderen!");
+                AddError("exception", $"Er is iets misgegaan probeer van pagina te veranderen :(");
                 ErrorContent = GetErrors("exception")?.Cast<string>().FirstOrDefault() ?? "";
                 SuccessContent = "";
             }
@@ -117,7 +117,7 @@ namespace WpfApp.ViewModels
             catch (Exception e)
             {
                 Debug.WriteLine($"{e.Message}");
-                AddError(nameof(e), $"Er is iets misgegaan probeer van page te veranderen!");
+                AddError(nameof(e), $"Er is iets misgegaan probeer van page te veranderen :(");
                 ErrorContent = GetErrors(nameof(e))?.Cast<string>().FirstOrDefault() ?? "";
                 SuccessContent = "";
             }
