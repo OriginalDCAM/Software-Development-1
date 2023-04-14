@@ -28,6 +28,7 @@ Student nummer: s1175200
 - [x] The use of MVVM Structure
 - [x] Better validation to ensure that certain requirements are met
 - [x] Validation using ValidateProperties
+- [x] Check if a Book/Author already exists with the same name and throws an error.
 
 
 ## Explanations:
@@ -42,7 +43,7 @@ betere manier van properties valideren.
 de database geseed met data van bekende auteurs en de boeken die zij hebben geschreven.
 
 ## Things that dont work:
-- Er is geen check die kijkt of er al een Boek/Auteur bestaat met dezelfde naam.
 - Genres kunnen niet geedit worden in de DataGrid.
-- Geen cooldown op de button voor de Create functie voor inserts in de database.
+- Als je de wijzigingen revert en dan aanpassing maakt werkt het niet door een hele vervelende error.
+- Boeken kunnen niet verwijdert worden daarvoor moet je de auteur verwijderen
 
