@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore;
 using WpfApp.Helpers;
 using WpfApp.Models;
 
@@ -51,6 +52,18 @@ namespace WpfApp.ViewModels
             }
         }
 
+        private string _successContent;
+
+        public string SuccessContent
+        {
+            get => _successContent;
+            set
+            {
+                _successContent = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand CreateAuthorCommand { get; set; }
 
         public CreateAuthorViewModel()
@@ -61,14 +74,34 @@ namespace WpfApp.ViewModels
         // Deze roept eerst een method aan die properties valideert of ze aan de juiste regels houden
         private void CreateAuthor(object e)
         {
+            ClearErrors(nameof(NameProperty));
             ValidateProperties();
             if (HasErrors) return;
-            _context.Authors.Add(new Author()
+            try
             {
-                Name = NameProperty,
-                Description = DescriptionProperty
-            });
-            _context.SaveChanges();
+                bool nameExists = _context.Authors.Any(a => a.Name == NameProperty);
+                if (nameExists)
+                {
+                    throw new DbUpdateException("Er bestaat al een boek met dezelfde naam.");
+                }
+                _context.Authors.Add(new Author()
+                {
+                    Name = NameProperty,
+                    Description = DescriptionProperty
+                });
+                _context.SaveChanges();
+                SuccessContent = $"{NameProperty} successvol toegevoegd!";
+               
+            }
+            catch (DbUpdateException exception)
+            {
+                Debug.Write("Works");
+                AddError(nameof(NameProperty), $"{exception.Message}");
+                ErrorContent = GetErrors(nameof(NameProperty))?.Cast<string>().FirstOrDefault() ?? "";
+                SuccessContent = "";
+                // Debug.WriteLine(exception);
+            }
+
         }
 
         // Code voor valideren van properties 
@@ -91,6 +124,7 @@ namespace WpfApp.ViewModels
 
         private void ValidateProperties()
         {
+            SuccessContent = "";
             ClearErrors(nameof(NameProperty));
             ClearErrors(nameof(DescriptionProperty));
             if (string.IsNullOrWhiteSpace(NameProperty))
